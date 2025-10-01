@@ -1,26 +1,226 @@
 @import "tailwindcss";
+/* @tailwind utilities; */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap");
+
+/* THEME: Aurora Console */
+:root {
+  --color-bg: #071028;
+  --color-surface: #0f1b2d;
+  --color-primary: #00e6c3;
+  --color-accent: #ff7aa2;
+  --color-text: #dde9f2;
+  --color-muted: #9fb0c2;
+  --color-on-primary: #041019;
+
+  /* spacing scale or other tokens can go here */
+  --radius-md: 12px;
+}
+
+/* Apply global background & default text */
+html,
+body,
+#__next {
+  height: 100%;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+  background: var(--color-bg);
+  color: var(--color-muted);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Use a surface container for sections */
+.section-surface {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+  border-radius: var(--radius-md);
+  box-shadow: 0 6px 20px rgba(2, 6, 23, 0.6);
+  color: var(--color-muted);
+}
+
+/* Example utility aliases (use these instead of ad-hoc colors) */
+.bg-bg {
+  background-color: var(--color-bg);
+}
+.bg-surface {
+  background-color: var(--color-surface);
+}
+.text-text {
+  color: var(--color-text);
+}
+.text-muted {
+  color: var(--color-muted);
+}
+.bg-primary {
+  background-color: var(--color-primary);
+}
+.text-on-primary {
+  color: var(--color-on-primary);
+}
+.bg-primary.text-on-primary {
+  color: var(--color-on-primary);
+}
+.bg-primary.text-on-primary--invert {
+  color: #ffffff;
+}
+.section {
+  scroll-snap-align: start;
+}
+.section-surface code,
+.section-surface pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --scrollbar-width: 8px;
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) transparent;
+}
+*::-webkit-scrollbar {
+  width: var(--scrollbar-width);
+  height: var(--scrollbar-width);
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(15, 27, 45, 0.7);
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.03);
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(15, 27, 45, 0.85);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Optional right-side progress indicator */
+/* .scroll-progress {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  width: 6px;
+  height: calc(100vh - 20px);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  z-index: 60;
+  overflow: hidden;
+  display: none; 
+}
+.scroll-progress > i {
+  display: block;
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(
+    180deg,
+    var(--color-primary),
+    var(--color-accent)
+  );
+  border-radius: inherit;
+  transition: height 120ms linear;
+} */
+
+.main-scroll {
+  scroll-snap-type: y proximity;
+  overflow-y: auto;
+  height: 100vh;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+.section {
+  scroll-snap-align: start;
+  min-height: 100vh;
+  padding: 6rem 1.25rem;
+  display: grid;
+  align-items: center;
+  padding-top: 4.5rem;
+  padding-bottom: 4.5rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.terminal-ticker .prompt {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* container */
+.terminal-ticker {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* focus ring for keyboard users */
+.terminal-ticker:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(0, 230, 195, 0.06);
+  border-radius: 8px;
+}
+
+.project-gradient-frame {
+  background: linear-gradient(
+    120deg,
+    rgba(0, 230, 195, 0.06),
+    rgba(255, 122, 162, 0.04)
+  );
+}
+
+/* smooth snippet expand/collapse */
+.group-hover\:max-h-40 {
+  max-height: 10rem;
+}
+
+.content-container {
+  max-width: 68rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.section-surface pre,
+.section-surface code {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* responsive timeline line for larger screens handled in component; ensure no overflow */
+@media (min-width: 768px) {
+  .content-container {
+    max-width: 68rem;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+  .terminal-ticker * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .section-surface .relative.w-full.h-40 {
+    height: 9rem;
+  } /* ensures consistent card height if needed */
+}
+
+/* Ensure the code card text wraps nicely on mobile without overflow */
+.section-surface code {
+  white-space: pre-wrap;
+  word-break: break-word;
 }
