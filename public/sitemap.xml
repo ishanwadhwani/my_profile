@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://your-domain.com/</loc></url>
-  <url><loc>https://your-domain.com/#about</loc></url>
-  <url><loc>https://your-domain.com/#projects</loc></url>
-  <url><loc>https://your-domain.com/#contact</loc></url>
+  <url><loc>https://my-profile-opal-psi.vercel.app/</loc></url>
+  <url><loc>https://my-profile-opal-psi.vercel.app/#about</loc></url>
+  <url><loc>https://my-profile-opal-psi.vercel.app/#skills</loc></url>
+  <url><loc>https://my-profile-opal-psi.vercel.app/#experience</loc></url>
+  <url><loc>https://my-profile-opal-psi.vercel.app/#projects</loc></url>
+  <url><loc>https://my-profile-opal-psi.vercel.app/#contact</loc></url>
 </urlset>
