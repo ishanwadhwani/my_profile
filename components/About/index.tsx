@@ -1,6 +1,5 @@
 // components/About.tsx
 "use client";
-import Link from "next/link";
 import { motion } from "framer-motion";
 
 export default function About() {
@@ -24,7 +23,7 @@ export default function About() {
             </h2>
 
             <p className="text-text text-base leading-relaxed mb-4">
-              Hi — I'm <strong className="font-medium">Ishan Wadhwani</strong>.
+              Hi — I&apos;m <strong className="font-medium">Ishan Wadhwani</strong>.
               I build fast, user-friendly web and mobile apps with a focus on
               clear UX and maintainable code. I love turning fuzzy product
               requirements into elegant interfaces and simple developer-first

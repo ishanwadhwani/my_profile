@@ -1,20 +1,21 @@
 // components/ProjectModal.tsx
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, PanInfo } from "framer-motion";
 import clsx from "clsx";
+import Image from "next/image";
 
 type Props = {
   open: boolean;
   onClose: () => void;
   title?: string;
   description?: string;
-  screenshots?: string[]; // array of image paths (public/...)
+  screenshots?: string[];
   repoHref?: string;
 };
 
-const SLIDE_THRESHOLD = 80; // px drag distance to switch slide
-const SLIDE_VELOCITY = 500; // velocity threshold to change
+const SLIDE_THRESHOLD = 80;
+const SLIDE_VELOCITY = 500;
 
 export default function ProjectModal({
   open,
@@ -30,7 +31,6 @@ export default function ProjectModal({
   const closeBtnRef = useRef<HTMLButtonElement | null>(null);
   const restoreFocusRef = useRef<HTMLElement | null>(null);
 
-  // normalize: if screenshots empty, show placeholder
   const slides = screenshots.length
     ? screenshots
     : ["/screens/placeholder.png"];
@@ -38,21 +38,17 @@ export default function ProjectModal({
   useEffect(() => {
     if (open) {
       restoreFocusRef.current = document.activeElement as HTMLElement | null;
-      // focus the close button for keyboard users
       setTimeout(() => closeBtnRef.current?.focus(), 60);
-      // prevent background scroll while modal is open
       const prev = document.body.style.overflow;
       document.body.style.overflow = "hidden";
       return () => {
         document.body.style.overflow = prev;
       };
     } else {
-      // restore focus back to previous element when closing
       restoreFocusRef.current?.focus?.();
     }
   }, [open]);
 
-  // keyboard handlers
   useEffect(() => {
     if (!open) return;
     function onKey(e: KeyboardEvent) {
@@ -72,8 +68,10 @@ export default function ProjectModal({
     setIndex((i) => (i + 1) % total);
   }
 
-  // drag handling: detect swipe intent
-  function onDragEnd(event: MouseEvent | TouchEvent | PointerEvent, info: any) {
+  function onDragEnd(
+    event: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo
+  ) {
     const offset = info.offset.x;
     const velocity = info.velocity.x;
     if (offset < -SLIDE_THRESHOLD || velocity < -SLIDE_VELOCITY) {
@@ -83,7 +81,6 @@ export default function ProjectModal({
     }
   }
 
-  // accessibility: announce slide change (small SR-only region)
   const srMessage = `Slide ${index + 1} of ${total}`;
 
   return (
@@ -99,7 +96,6 @@ export default function ProjectModal({
           aria-modal="true"
           role="dialog"
         >
-          {/* backdrop */}
           <motion.div
             className="absolute inset-0 bg-black/60"
             initial={{ opacity: 0 }}
@@ -107,8 +103,6 @@ export default function ProjectModal({
             exit={{ opacity: 0 }}
             onClick={onClose}
           />
-
-          {/* modal card: fixed responsive size so images do not resize it */}
           <motion.div
             className="relative z-10 w-full max-w-[1100px] h-[min(80vh,900px)] bg-surface section-surface rounded-2xl shadow-2xl overflow-hidden flex flex-col"
             initial={{ y: 16, opacity: 0, scale: 0.985 }}
@@ -116,7 +110,6 @@ export default function ProjectModal({
             exit={{ y: 8, opacity: 0, scale: 0.985 }}
             transition={{ duration: 0.28 }}
           >
-            {/* Close icon top-right */}
             <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
               <button
                 ref={closeBtnRef}
@@ -124,7 +117,6 @@ export default function ProjectModal({
                 aria-label="Close project preview"
                 className="w-9 h-9 rounded-md inline-flex items-center justify-center bg-[rgba(255,255,255,0.02)] text-text hover:bg-[rgba(255,255,255,0.03)] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
-                {/* simple X icon SVG */}
                 <svg
                   width="16"
                   height="16"
@@ -143,14 +135,11 @@ export default function ProjectModal({
               </button>
             </div>
 
-            {/* layout: carousel (75%) / info (25%) */}
             <div className="flex-1 flex flex-col">
-              {/* Carousel area: fixed portion of modal height (~75%) */}
               <div
                 className="flex-1 relative flex items-center justify-center select-none"
                 style={{ minHeight: 0 }}
               >
-                {/* left chevron clickable area (subtle, visible on hover) */}
                 <button
                   aria-hidden
                   onClick={(e) => {
@@ -177,7 +166,6 @@ export default function ProjectModal({
                   </svg>
                 </button>
 
-                {/* right chevron */}
                 <button
                   aria-hidden
                   onClick={(e) => {
@@ -204,11 +192,9 @@ export default function ProjectModal({
                   </svg>
                 </button>
 
-                {/* slide viewport (centered) */}
                 <div className="w-full h-full flex items-center justify-center">
                   <div className="w-full max-w-[980px] h-full flex items-center justify-center">
                     <div className="w-full h-full flex items-center justify-center">
-                      {/* Use AnimatePresence + motion for slide transitions */}
                       <AnimatePresence initial={false} custom={index}>
                         <motion.div
                           key={index}
@@ -225,9 +211,8 @@ export default function ProjectModal({
                             dragElastic={0.2}
                             className="w-full h-full flex items-center justify-center"
                           >
-                            {/* Image frame: ensure fixed size, center, contain */}
                             <div className="w-full h-full flex items-center justify-center p-6">
-                              <img
+                              <Image
                                 src={slides[index]}
                                 alt={`${title ?? "Project"} screenshot ${
                                   index + 1
@@ -247,7 +232,6 @@ export default function ProjectModal({
                   </div>
                 </div>
 
-                {/* small dot indicators centered at bottom of carousel */}
                 <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-30">
                   {slides.map((_, i) => (
                     <button
@@ -265,7 +249,6 @@ export default function ProjectModal({
                 </div>
               </div>
 
-              {/* Info area ~25% height */}
               <div className="px-6 py-4 border-t border-[rgba(255,255,255,0.02)] flex items-center justify-between gap-4">
                 <div>
                   <h3 className="text-lg font-semibold text-text">{title}</h3>
@@ -292,7 +275,6 @@ export default function ProjectModal({
             </div>
           </motion.div>
 
-          {/* accessible SR region announcing slide changes */}
           <div className="sr-only" aria-live="polite">
             {srMessage}
           </div>

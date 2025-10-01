@@ -52,7 +52,7 @@ export default function Contact() {
       });
 
       const text = await res.text();
-      let data: any = {};
+      let data: { ok: boolean; message?: string } = { ok: false };
       try {
         data = JSON.parse(text);
       } catch (err) {
@@ -68,7 +68,8 @@ export default function Contact() {
       } else {
         setStatus({ ok: false, msg: data.message || "Submission failed." });
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
+      if (err instanceof Error) return;
       setStatus({ ok: false, msg: "Network error — please try again." });
     } finally {
       setSending(false);
@@ -168,7 +169,9 @@ export default function Contact() {
               {status && (
                 <div
                   className={`mt-2 text-sm ${
-                    status.ok ? "text-[var(--color-primary)]" : "text-[var(--color-accent)]/90"
+                    status.ok
+                      ? "text-[var(--color-primary)]"
+                      : "text-[var(--color-accent)]/90"
                   }`}
                 >
                   {status.msg}

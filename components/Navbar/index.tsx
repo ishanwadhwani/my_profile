@@ -20,7 +20,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const sections = Array.from(
-      document.querySelectorAll<HTMLElement>("section[id]")
+      document.querySelectorAll<HTMLElement>('section[id]')
     );
     if (!sections.length) return;
 
@@ -85,9 +85,9 @@ export default function Navbar() {
         {/* Desktop links */}
         <nav className="hidden md:flex items-center gap-2">
           {LINKS.map((l) => {
-            const isActive =
-              active === (l.id === "home" ? "top" : l.id) ||
-              (l.href === "#top" && active === "home");
+            // const isActive =
+            //   active === (l.id === "home" ? "top" : l.id) ||
+            //   (l.href === "#top" && active === "home");
             return (
               <Link
                 key={l.href}
@@ -95,7 +95,7 @@ export default function Navbar() {
                 className={clsx(
                   "px-3 py-1 rounded-md text-sm font-medium hover:text-[var(--color-accent)]",
                 )}
-                aria-current={isActive ? "page" : undefined}
+                // aria-current={isActive ? "page" : undefined}
               >
                 {l.label}
               </Link>
@@ -149,7 +149,7 @@ export default function Navbar() {
               <div className="bg-surface border border-[rgba(255,255,255,0.03)] rounded-xl p-4 shadow-lg">
                 <nav className="flex flex-col gap-2">
                   {LINKS.map((l) => {
-                    const isActive = active === l.id;
+                    // const isActive = active === l.id;
                     return (
                       <Link
                         key={l.href}

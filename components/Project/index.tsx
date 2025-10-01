@@ -7,6 +7,7 @@ import { FaLock } from "react-icons/fa6";
 
 import ProjectModal from "@/components/ProjectModal";
 import Project from "@/utils/text";
+import Image from "next/image";
 
 // Filters (simple)
 const FILTERS = [
@@ -58,7 +59,7 @@ export default function Projects() {
             {FILTERS.map((f) => (
               <button
                 key={f.key}
-                onClick={() => setFilter(f.key as any)}
+                onClick={() => setFilter(f.key as typeof filter)}
                 title={f.label}
                 className={clsx(
                   "px-3 py-1 rounded-md text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-primary",
@@ -83,7 +84,7 @@ export default function Projects() {
             >
               {/* Image / visual */}
               <div className="w-full aspect-[16/10] bg-[rgba(0,0,0,0.06)] overflow-hidden">
-                <img
+                <Image
                   src={p.screenshots?.[0] ?? "/screens/placeholder.png"}
                   alt={`${p.title} screenshot`}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
