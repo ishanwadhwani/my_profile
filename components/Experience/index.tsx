@@ -77,7 +77,6 @@ export default function Experience() {
         </div>
 
         <div className="relative">
-          {/* vertical timeline line */}
           <div className="absolute left-4 md:left-8 top-6 bottom-6 w-0.5 bg-[rgba(255,255,255,0.04)] hidden md:block" />
 
           <div className="flex flex-col gap-6">

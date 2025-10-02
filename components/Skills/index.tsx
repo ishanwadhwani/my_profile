@@ -73,11 +73,11 @@ export default function Skills() {
               </p>
             </div>
 
-            <div className="flex gap-1 md:gap-1 items-center flex-wrap">
+            <div className="flex md:gap-1 items-center flex-wrap">
               <button
                 onClick={() => setActive("All")}
                 className={clsx(
-                  "px-3 py-2 rounded-md text-sm font-medium focus:outline-none cursor-pointer",
+                  "hidden md:block px-3 py-2 rounded-md text-sm font-medium focus:outline-none cursor-pointer",
                   active === "All"
                     ? "bg-primary text-on-primary"
                     : "text-muted hover:text-text"
@@ -91,7 +91,7 @@ export default function Skills() {
                   key={c}
                   onClick={() => setActive(c)}
                   className={clsx(
-                    "px-1.5 py-2 rounded-md text-sm font-medium focus:outline-none cursor-pointer",
+                    "hidden md:block px-1.5 py-2 rounded-md text-sm font-medium focus:outline-none cursor-pointer",
                     active === c
                       ? "bg-primary text-on-primary"
                       : "text-muted hover:text-text"

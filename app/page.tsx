@@ -7,6 +7,7 @@ import Experience from "@/components/Experience";
 import Projects from "@/components/Project";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import MobileDivider from "@/components/MobileDivider";
 
 const DIVIDER_COMMANDS: Record<string, string[]> = {
   hero_about: [
@@ -47,30 +48,44 @@ export default function Page() {
         commands={DIVIDER_COMMANDS.hero_about}
         shell="bash"
         interval={2800}
+        className="hidden md:block"
       />
+      <MobileDivider caption={`'echo "→ About — who I am"'`} />
       <About />
       <SectionDivider
         commands={DIVIDER_COMMANDS.about_skills}
         shell="bash"
         interval={2800}
+        className="hidden md:block"
       />
+      <MobileDivider caption={`'echo "→ Skills — check the toolbox"'`} />
       <Skills />
       <SectionDivider
         commands={DIVIDER_COMMANDS.skills_experience}
         shell="bash"
         interval={2800}
+        className="hidden md:block"
       />
+      <MobileDivider caption={`'echo "→ Experience — timeline below"'`} />
       <Experience />
       <SectionDivider
         commands={DIVIDER_COMMANDS.experience_projects}
         shell="bash"
         interval={2800}
+        className="hidden md:block"
+      />
+      <MobileDivider
+        caption={`'Write-Output "→ Projects — demos & code samples"'`}
       />
       <Projects />
       <SectionDivider
         commands={DIVIDER_COMMANDS.projects_contact}
         shell="bash"
         interval={2800}
+        className="hidden md:block"
+      />
+      <MobileDivider
+        caption={`'echo "→ Projects & Contact — let's connect"'`}
       />
       <Contact />
       <Footer />

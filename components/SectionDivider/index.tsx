@@ -64,7 +64,7 @@ export default function SectionDivider({
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
-      className={`terminal-ticker w-full py-3 ${className}`}
+      className={`terminal-ticker w-full ${className}`}
     >
       <div className="max-w-5xl mx-auto px-6">
         <div className="rounded-md border border-[rgba(255,255,255,0.03)] px-3 py-2 bg-[rgba(0,0,0,0.04)] flex items-center gap-3">

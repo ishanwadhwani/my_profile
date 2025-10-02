@@ -24,7 +24,7 @@ export default function Hero() {
   const current = LINES[index];
 
   return (
-    <section className="max-w-5xl mx-auto px-6 py-12 bg-surface section-surface rounded-lg">
+    <section className="max-w-5xl mx-auto px-6 py-10 bg-surface section-surface rounded-lg">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
         <div>
           <h1 className="text-4xl md:text-5xl font-bold text-text mb-4">

@@ -5,7 +5,7 @@ import Link from "next/link";
 import clsx from "clsx";
 
 const LINKS = [
-  { id: "home", label: "Home", href: "/" },
+  // { id: "home", label: "Home", href: "#home" },
   { id: "about", label: "About", href: "#about" },
   { id: "skills", label: "Skills", href: "#skills" },
   { id: "experience", label: "Experience", href: "#experience" },
@@ -20,7 +20,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const sections = Array.from(
-      document.querySelectorAll<HTMLElement>('section[id]')
+      document.querySelectorAll<HTMLElement>("section[id]")
     );
     if (!sections.length) return;
 
@@ -56,6 +56,26 @@ export default function Navbar() {
     return () => window.removeEventListener("hashchange", onHash);
   }, []);
 
+  function handleNavClick(e: React.MouseEvent, id: string) {
+    e.preventDefault();
+    setOpen(false); 
+
+    const main = document.querySelector<HTMLElement>(".main-scroll");
+    const target = document.getElementById(id);
+
+    if (!main || !target) {
+      window.location.hash = `#${id}`;
+      return;
+    }
+
+    const mainRect = main.getBoundingClientRect();
+    const targetRect = target.getBoundingClientRect();
+    const top = targetRect.top - mainRect.top + main.scrollTop;
+
+    main.scrollTo({ top: Math.max(0, Math.round(top)), behavior: "smooth" });
+    history.replaceState(null, "", `#${id}`);
+  }
+
   return (
     <header
       className={clsx(
@@ -69,7 +89,7 @@ export default function Navbar() {
         {/* Logo */}
         <div className="flex items-center gap-3">
           <Link
-            href="#top"
+            href="/"
             className="group inline-flex items-center gap-2 focus:outline-none"
             aria-label="Go to top"
           >
@@ -85,17 +105,18 @@ export default function Navbar() {
         {/* Desktop links */}
         <nav className="hidden md:flex items-center gap-2">
           {LINKS.map((l) => {
-            // const isActive =
-            //   active === (l.id === "home" ? "top" : l.id) ||
-            //   (l.href === "#top" && active === "home");
+            const isActive =
+              active === (l.id === "home" ? "top" : l.id) ||
+              (l.href === "#top" && active === "home");
             return (
               <Link
                 key={l.href}
                 href={l.href}
+                onClick={(e) => handleNavClick(e as any, l.id)}
                 className={clsx(
-                  "px-3 py-1 rounded-md text-sm font-medium hover:text-[var(--color-accent)]",
+                  "px-3 py-1 rounded-md text-sm font-medium hover:text-[var(--color-accent)]"
                 )}
-                // aria-current={isActive ? "page" : undefined}
+                aria-current={isActive ? "page" : undefined}
               >
                 {l.label}
               </Link>
@@ -156,7 +177,7 @@ export default function Navbar() {
                         href={l.href}
                         onClick={() => setOpen(false)}
                         className={clsx(
-                          "px-3 py-2 rounded-md text-sm font-medium focus:outline-none hover:text-[var(--color-accent)]",
+                          "px-3 py-2 rounded-md text-sm font-medium focus:outline-none hover:text-[var(--color-accent)]"
                         )}
                       >
                         {l.label}
