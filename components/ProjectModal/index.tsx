@@ -223,6 +223,8 @@ export default function ProjectModal({
                                     "linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.04))",
                                 }}
                                 loading="eager"
+                                width={800}
+                                height={600}
                               />
                             </div>
                           </motion.div>

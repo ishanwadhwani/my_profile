@@ -55,14 +55,14 @@ export default function Projects() {
             <p className="text-muted text-sm mt-1">{`<text>Tap to know more</text>`}</p>
           </div>
 
-          <div className="flex gap-2 flex-wrap">
+          <div className="flex gap-1 flex-wrap">
             {FILTERS.map((f) => (
               <button
                 key={f.key}
                 onClick={() => setFilter(f.key as typeof filter)}
                 title={f.label}
                 className={clsx(
-                  "px-3 py-1 rounded-md text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-primary",
+                  "px-1 py-1 rounded-md text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-primary",
                   filter === f.key
                     ? "bg-primary text-on-primary"
                     : "text-muted hover:text-text"
@@ -89,6 +89,8 @@ export default function Projects() {
                   alt={`${p.title} screenshot`}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"
+                  width={400}
+                  height={250}
                 />
 
                 {/* Hover overlay (appears on hover or focus) */}
