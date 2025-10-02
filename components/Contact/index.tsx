@@ -55,7 +55,8 @@ export default function Contact() {
       let data: { ok: boolean; message?: string } = { ok: false };
       try {
         data = JSON.parse(text);
-      } catch (err) {
+      } catch (err: unknown) {
+        if (err instanceof Error) return;
         data = { ok: false, message: "Invalid response" };
       }
 

@@ -112,7 +112,7 @@ export default function Navbar() {
               <Link
                 key={l.href}
                 href={l.href}
-                onClick={(e) => handleNavClick(e as any, l.id)}
+                onClick={(e) => handleNavClick(e, l.id)}
                 className={clsx(
                   "px-3 py-1 rounded-md text-sm font-medium hover:text-[var(--color-accent)]"
                 )}
