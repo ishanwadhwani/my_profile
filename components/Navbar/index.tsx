@@ -58,7 +58,7 @@ export default function Navbar() {
 
   function handleNavClick(e: React.MouseEvent, id: string) {
     e.preventDefault();
-    setOpen(false); 
+    setOpen(false);
 
     const main = document.querySelector<HTMLElement>(".main-scroll");
     const target = document.getElementById(id);
@@ -86,7 +86,6 @@ export default function Navbar() {
       aria-label="Primary"
     >
       <div className="bg-surface/95 border border-[rgba(255,255,255,0.03)] rounded-xl px-4 py-3 flex items-center justify-between gap-4">
-        {/* Logo */}
         <div className="flex items-center gap-3">
           <Link
             href="/"
@@ -96,9 +95,6 @@ export default function Navbar() {
             <span className="font-mono text-primary text-lg leading-none">
               {"<Ishan/>"}
             </span>
-            {/* <span className="text-text text-sm hidden sm:inline-block">
-              Full-stack engineer
-            </span> */}
           </Link>
         </div>
 
@@ -124,7 +120,6 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Right controls */}
         <div className="flex items-center gap-2">
           <Link
             href="/IshanWadhwani_Resume.pdf"
@@ -134,7 +129,6 @@ export default function Navbar() {
             Resume
           </Link>
 
-          {/* Mobile menu button */}
           <button
             aria-label="Toggle menu"
             aria-expanded={open}
@@ -157,7 +151,6 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile menu (animated) */}
         <AnimatePresence>
           {open && (
             <motion.div
@@ -170,12 +163,11 @@ export default function Navbar() {
               <div className="bg-surface border border-[rgba(255,255,255,0.03)] rounded-xl p-4 shadow-lg">
                 <nav className="flex flex-col gap-2">
                   {LINKS.map((l) => {
-                    // const isActive = active === l.id;
                     return (
                       <Link
                         key={l.href}
                         href={l.href}
-                        onClick={() => setOpen(false)}
+                        onClick={(e) => handleNavClick(e, l.id)}
                         className={clsx(
                           "px-3 py-2 rounded-md text-sm font-medium focus:outline-none hover:text-[var(--color-accent)]"
                         )}
