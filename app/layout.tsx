@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     siteName: "Ishan Wadhwani",
     images: [
       {
-        url: "https://ishanwadhwani.vercel.app/public/og-image.jpg",
+        url: "https://ishanwadhwani.vercel.app/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Ishan Wadhwani - Developer",
