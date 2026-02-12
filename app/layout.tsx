@@ -3,8 +3,67 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
-  title: "Ishan Wadhwani — Portfolio",
-  description: "Full-stack engineer",
+  metadataBase: new URL("https://ishanwadhwani.vercel.app"),
+  title: {
+    default:
+      "Ishan Wadhwani - Freelancer/Working professional/Developer",
+    template: "%s | Ishan Wadhwani",
+  },
+  description:
+    "Ishan builds production ready web apps and data pipelines — readable, performant, and user-friendly.",
+  keywords: [
+    "full stack developer",
+    "freelancer",
+    "developer",
+    "fullstack developer",
+    "nextjs developere",
+    "frontend developer",
+    "backend developer",
+    "website maker",
+    "data engineer",
+    "ai developer",
+    "ishan wadhwani",
+    "ishan",
+    "wadhwani",
+    "working professional",
+    "android apps",
+    "websites",
+    "wordpress developer",
+    "ishanwadhwani",
+    "developer india",
+    "freelancing",
+    "experience developer",
+    "python developer"
+  ],
+  authors: [{ name: "Ishan wadhwani", url: "https://ishanwadhwani.vercel.app" }],
+  creator: "Ishan wadhwani",
+  publisher: "Ishan wadhwani",
+  formatDetection: {
+    telephone: false,
+    email: false,
+    address: false,
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://ishanwadhwani.vercel.app",
+    title:
+      "Ishan Wadhwani - Freelancer/Working professional/Developer",
+    description:
+      "Ishan builds production ready web apps and data pipelines — readable, performant, and user-friendly.",
+    siteName: "Ishan Wadhwani",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({

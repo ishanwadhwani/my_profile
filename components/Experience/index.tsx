@@ -19,12 +19,12 @@ const EXPERIENCES: ExpItem[] = [
   {
     id: "accenture",
     company: "Accenture (Client: BHP)",
-    role: "Associate Application Developer",
+    role: "Data Engineer",
     date: "Jul 2024 — Present",
     location: "Gurugram, India",
     bullets: [
-      "Reduced pipeline dev time by 40% via 15 reusable Astronomer (Airflow) DAG templates that standardized ETL.",
-      "Implemented Snowflake-based data models to process TBs of operations data; improved query throughput by 50% using clustering & micro-partition strategies.",
+      "Created pipelines to reduce dev time by 40% into Astronomer (Airflow DAG) that standardized ETL.",
+      "Implemented Snowflake-based data models to process TBs of operations data; improved query throughput by 50% via clustering and micro-partition strategies.",
     ],
     tag: "Data & Cloud",
   },

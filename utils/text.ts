@@ -12,6 +12,17 @@ type Project = {
 
 const Project: Project[] = [
   {
+    id: "mansysmantra",
+    title: "Mansys Mantra",
+    desc: "Specialized recruitment and skilled trade migration services in Australia.",
+    tech: ["Next.js", "TypeScript", "Sanity"],
+    demo: "https://www.mansysmantra.com/",
+    repo: "https://github.com/ishanwadhwani/mansys",
+    screenshots: ["/screens/placeholder.png"],
+    snippet: `call submitApplication() => { Welcome to Australia }`,
+    wip: false,
+  },
+  {
     id: "depense",
     title: "Depense",
     desc: "Expense & group management app.",
