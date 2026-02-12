@@ -3,10 +3,12 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ishanwadhwani.vercel.app"),
+  verification: {
+    google: "2MaX9GtjRXWvGuoVHIoOiew7Vfydp92g65rVkKc0sfw",
+  },
+  metadataBase: new URL("https://ishanwadhwani.vercel.app/"),
   title: {
-    default:
-      "Ishan Wadhwani - Freelancer/Working professional/Developer",
+    default: "Ishan Wadhwani - Freelancer/Working professional/Developer",
     template: "%s | Ishan Wadhwani",
   },
   description:
@@ -33,9 +35,11 @@ export const metadata: Metadata = {
     "developer india",
     "freelancing",
     "experience developer",
-    "python developer"
+    "python developer",
   ],
-  authors: [{ name: "Ishan wadhwani", url: "https://ishanwadhwani.vercel.app" }],
+  authors: [
+    { name: "Ishan wadhwani", url: "https://ishanwadhwani.vercel.app/" },
+  ],
   creator: "Ishan wadhwani",
   publisher: "Ishan wadhwani",
   formatDetection: {
@@ -46,12 +50,19 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://ishanwadhwani.vercel.app",
-    title:
-      "Ishan Wadhwani - Freelancer/Working professional/Developer",
+    url: "https://ishanwadhwani.vercel.app/",
+    title: "Ishan Wadhwani - Freelancer/Working professional/Developer",
     description:
       "Ishan builds production ready web apps and data pipelines — readable, performant, and user-friendly.",
     siteName: "Ishan Wadhwani",
+    images: [
+      {
+        url: "https://ishanwadhwani.vercel.app/public/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ishan Wadhwani - Developer",
+      },
+    ],
   },
   robots: {
     index: true,
