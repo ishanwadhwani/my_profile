@@ -12,7 +12,7 @@ export default function Contact() {
   const [message, setMessage] = useState("");
   const [sending, setSending] = useState(false);
   const [status, setStatus] = useState<{ ok: boolean; msg: string } | null>(
-    null
+    null,
   );
 
   // honeypot
@@ -78,9 +78,9 @@ export default function Contact() {
   }
 
   const mailto = `mailto:iwadhwani029@gmail.com?subject=${encodeURIComponent(
-    subject
+    subject,
   )}&body=${encodeURIComponent(
-    `Name: ${name}\nEmail: ${email}\n\n${message}`
+    `Name: ${name}\nEmail: ${email}\n\n${message}`,
   )}`;
 
   return (
@@ -131,8 +131,12 @@ export default function Contact() {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   rows={6}
-                  className="px-3 py-2 rounded-md bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.02)] text-text"
+                  maxLength={500}
+                  className="resize-y max-h-[300px] max-w-full px-3 py-2 rounded-md bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.02)] text-text"
                 />
+                <div className="text-right text-xs text-muted mt-1.5">
+                  {message.length} / 500 characters
+                </div>
               </label>
 
               <label className="sr-only" aria-hidden>
